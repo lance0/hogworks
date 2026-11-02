@@ -101,9 +101,11 @@ npx skills update
 
 Edit the canonical files under `skills/`. Keep findings tied to reachable code and performance claims tied to measurements. Include a concrete example when reporting a problem or proposing a change.
 
-Before submitting a change, check that both skills are discovered:
+CI checks YAML frontmatter, required names and descriptions, directory-name matching, and non-empty instructions on pushes and pull requests. Run the same check locally, then confirm CLI discovery:
 
 ```sh
+python -m pip install PyYAML==6.0.3
+python scripts/validate-skills.py
 npx skills add . --list
 ```
 
