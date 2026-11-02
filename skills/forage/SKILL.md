@@ -1,7 +1,7 @@
 ---
 name: forage
-description: Read-only lifecycle and concurrency audit that forages for two defect classes green tests rarely catch. (1) Implicit state machines are state spread across bools, Options, sets and counters with no named combined state, along with the stale copies they leave behind. (2) Sequential awaits over N independent targets inside actors or fan-out loops, which turn one stuck peer into a stall of the whole process. Use when the user types `/forage`, asks for a "lifecycle audit", asks to "find the implicit state machines", "find stale copies", "audit sequential awaits", "find hidden stalls", or "find async calls that should be concurrent", or wants a lifecycle or concurrency correctness sweep. Works in any language (Rust/tokio, Go, TS/Node, Python asyncio, Java). Produces verified findings and proposed tickets, never edits.
-argument-hint: "[state|awaits|both] [paths or subsystems...]"
+description: >-
+  Read-only lifecycle and concurrency audit that forages for two defect classes green tests rarely catch. (1) Implicit state machines are state spread across bools, Options, sets and counters with no named combined state, along with the stale copies they leave behind. (2) Sequential awaits over N independent targets inside actors or fan-out loops, which turn one stuck peer into a stall of the whole process. Use when the user types `/forage`, asks for a "lifecycle audit", asks to "find the implicit state machines", "find stale copies", "audit sequential awaits", "find hidden stalls", or "find async calls that should be concurrent", or wants a lifecycle or concurrency correctness sweep. Works in any language (Rust/tokio, Go, TS/Node, Python asyncio, Java). Produces verified findings and proposed tickets, never edits.
 ---
 
 # Forage: lifecycle audit
