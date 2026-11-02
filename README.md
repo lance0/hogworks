@@ -97,8 +97,6 @@ npx skills check
 npx skills update
 ```
 
-If you previously copied `lifecycle-audit` or `data-oriented-review` into your agent's skills folder, compare any local changes and back them up before removing those old copies. Confirm `forage` and `array` are available first.
-
 ## Contributing
 
 Edit the canonical files under `skills/`. Keep findings tied to reachable code and performance claims tied to measurements. Include a concrete example when reporting a problem or proposing a change.
