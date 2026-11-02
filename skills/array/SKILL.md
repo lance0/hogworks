@@ -1,7 +1,7 @@
 ---
 name: array
 description: >-
-  Review or rewrite hot code using data-oriented design. The seven questions are: flat arrays instead of hash tables, indices instead of pointers, hot bits packed into an index, redesign instead of caching (delete caches), struct-of-arrays instead of array-of-structs, inline-capacity small vectors instead of heap lists, and bitsets instead of bool arrays. Use when the user types `/array`, asks for a "data-oriented review" or "data-oriented design pass", asks "how do we rewrite this to better leverage data-oriented design", "replace these hash tables with a flat array", "make the pointers indices", "should this be SoA", "delete the caches and make it faster", "use a bitset" or "use small vectors", or wants a memory-layout or cache-locality pass on hot paths. Works in any language (Rust, C/C++, Zig, Go, Java/C#). By default it audits and reports; with `apply` it rewrites in a worktree, and every change needs a measured before/after.
+  Review or rewrite hot code using data-oriented design. The seven questions are: flat arrays instead of hash tables, indices instead of pointers, hot bits packed into an index, redesign instead of caching (delete caches), struct-of-arrays instead of array-of-structs, inline-capacity small vectors instead of heap lists, and bitsets instead of bool arrays. Use when the user invokes array, asks for a "data-oriented review" or "data-oriented design pass", asks "how do we rewrite this to better leverage data-oriented design", "replace these hash tables with a flat array", "make the pointers indices", "should this be SoA", "delete the caches and make it faster", "use a bitset" or "use small vectors", or wants a memory-layout or cache-locality pass on hot paths. Works in any language (Rust, C/C++, Zig, Go, Java/C#). By default it audits and reports; with `apply` it rewrites in a worktree, and every change needs a measured before/after.
 ---
 
 # Array: data-oriented review
@@ -11,6 +11,10 @@ Shape the data around what the hot loop actually touches. Every question below i
 Arguments:
 - **Mode:** `audit` (default; read-only, produces a report) or `apply` (rewrites in an isolated worktree, one change per commit, each with a measured before/after).
 - **Scope:** paths, type names or hot functions. With no scope, run **Find the hot data** first.
+
+## Available tools
+
+Use the host agent's available file, search, and shell tools. If tracker access, profiling tools, or report-file writes are unavailable, state the limitation and report only what you can verify; return the report in chat when needed. Never invent tracker checks or measurements.
 
 ## Ground rules
 

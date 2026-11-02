@@ -1,7 +1,7 @@
 ---
 name: forage
 description: >-
-  Read-only lifecycle and concurrency audit that forages for two defect classes green tests rarely catch. (1) Implicit state machines are state spread across bools, Options, sets and counters with no named combined state, along with the stale copies they leave behind. (2) Sequential awaits over N independent targets inside actors or fan-out loops, which turn one stuck peer into a stall of the whole process. Use when the user types `/forage`, asks for a "lifecycle audit", asks to "find the implicit state machines", "find stale copies", "audit sequential awaits", "find hidden stalls", or "find async calls that should be concurrent", or wants a lifecycle or concurrency correctness sweep. Works in any language (Rust/tokio, Go, TS/Node, Python asyncio, Java). Produces verified findings and proposed tickets, never edits.
+  Read-only lifecycle and concurrency audit that forages for two defect classes green tests rarely catch. (1) Implicit state machines are state spread across bools, Options, sets and counters with no named combined state, along with the stale copies they leave behind. (2) Sequential awaits over N independent targets inside actors or fan-out loops, which turn one stuck peer into a stall of the whole process. Use when the user invokes forage, asks for a "lifecycle audit", asks to "find the implicit state machines", "find stale copies", "audit sequential awaits", "find hidden stalls", or "find async calls that should be concurrent", or wants a lifecycle or concurrency correctness sweep. Works in any language (Rust/tokio, Go, TS/Node, Python asyncio, Java). Produces verified findings and proposed tickets, never edits.
 ---
 
 # Forage: lifecycle audit
@@ -9,6 +9,10 @@ description: >-
 Find the bugs that live *between* the variables and *between* the awaits. Each piece of code looks correct on its own; the bug is in the combination. Both lenses are read-only code traces. Fixes are separate work, and each one starts with a test that fails before the fix.
 
 Arguments: the lens (`state`, `awaits` or `both`, default `both`) and an optional scope. With no scope, run **Scope** below.
+
+## Available tools
+
+Use the host agent's available file, search, and shell tools. If tracker access, profiling tools, or report-file writes are unavailable, state the limitation and report only what you can verify; return the report in chat when needed. Never invent tracker checks or measurements.
 
 ## Ground rules
 
@@ -23,7 +27,7 @@ Arguments: the lens (`state`, `awaits` or `both`, default `both`) and an optiona
 
 1. Find the long-lived owners: actors, managers, supervisors, session tasks, the config/transaction layer, startup and shutdown. Use `rg -n 'loop \{|select!|for .* in .*\.await|while let .*recv|spawn' -g '*.<ext>'` or the language's equivalent, plus the README or architecture docs.
 2. Rank the subsystems by blast radius: whatever carries live traffic, then whatever operators trigger in bulk (reload, global toggles, bulk delete), then shutdown and restart, then everything else.
-3. If more than about 3 subsystems are in scope and subagents are available, fan out **one read-only agent per subsystem**, using the brief template at the bottom. Re-trace every A they report before accepting it.
+3. If more than about 3 subsystems are in scope and subagents are available, fan out **one read-only agent per subsystem**, using the brief template at the bottom. Re-trace every A they report before accepting it. Without subagents, audit the subsystems sequentially.
 
 ## Lens 1: implicit state machines (`state`)
 
