@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "hogworks",
-      "description": "forage (lifecycle and concurrency audit), array (data-oriented design review), and nibble (over-fetching and repeated-work audit).",
+      "description": "Audits for lifecycle and concurrency bugs, slow data layouts, and wasted work on hot paths.",
       "source": "./",
       "category": "development"
     }
