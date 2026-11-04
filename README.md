@@ -2,12 +2,13 @@
 
 # hogworks
 
-Two skills for finding the bugs and slow paths that green tests miss. Portable Agent Skills for **Claude Code, Codex, Cursor, and other compatible coding agents**.
+Three skills for finding the bugs and slow paths that green tests miss. Portable Agent Skills for **Claude Code, Codex, Cursor, and other compatible coding agents**.
 
 | Skill | Use it for | Default behavior |
 | --- | --- | --- |
 | [forage](skills/forage/SKILL.md) | Lifecycle bugs, stale state, and sequential awaits that stall independent work | Read-only audit with source evidence and proposed regression tests |
 | [array](skills/array/SKILL.md) | Hot data layouts, allocations, caches, and pointer chasing | Read-only review; `apply` makes changes with before/after measurements |
+| [nibble](skills/nibble/SKILL.md) | Over-fetching (whole rows, big jsonb, N+1) and work repeated per call (regexes, parsing, constants) | Read-only audit; `apply` makes changes with before/after measurements |
 
 ## Install
 
@@ -23,7 +24,7 @@ In an interactive terminal, the installer lets you choose skills and coding agen
 npx skills add lance0/hogworks -g
 ```
 
-For scripts or a specific target, use `--skill forage array` and `-a <agent>` (for example, `-a codex`). See the [supported agents and install paths](https://github.com/vercel-labs/skills/blob/main/docs/agents.md) for your agent's identifier.
+For scripts or a specific target, use `--skill forage array nibble` and `-a <agent>` (for example, `-a codex`). See the [supported agents and install paths](https://github.com/vercel-labs/skills/blob/main/docs/agents.md) for your agent's identifier.
 
 Restart your agent if the new skills do not appear. Choose either the CLI install or the Claude Code plugin below to avoid duplicate skills.
 
@@ -35,6 +36,7 @@ Restart your agent if the new skills do not appear. Choose either the CLI instal
 /forage both src/server
 /array audit src/index
 /array apply src/index
+/nibble audit src/routes
 ```
 
 ### Codex
@@ -45,29 +47,31 @@ Mention the skill with `$` in your prompt, or select it from the skills picker:
 $forage both src/server
 $array audit src/index
 $array apply src/index
+$nibble audit src/routes
 ```
 
 ### Cursor
 
-In Agent chat, type `/` and select `forage` or `array`, then add the mode and scope:
+In Agent chat, type `/` and select `forage`, `array`, or `nibble`, then add the mode and scope:
 
 ```text
 /forage both src/server
 /array audit src/index
 /array apply src/index
+/nibble audit src/routes
 ```
 
 ### Other coding agents
 
-Select the skill using your agent's skill picker, or ask naturally: “Use forage to audit lifecycle and concurrency in src/server” or “Use array to review the hot data in src/index.”
+Select the skill using your agent's skill picker, or ask naturally: “Use forage to audit lifecycle and concurrency in src/server,” “Use array to review the hot data in src/index,” or “Use nibble to find over-fetching and repeated work in src/routes.”
 
 Invocation syntax varies by agent; `/forage` and `$forage` are not universal commands.
 
-`forage` accepts `state`, `awaits`, or `both` (default). `array` accepts `audit` (default) or `apply`. Paths, types, and subsystem names narrow the scope; omit them to let the skill identify candidates.
+`forage` accepts `state`, `awaits`, or `both` (default). `array` and `nibble` accept `audit` (default) or `apply`. Paths, types, and subsystem names narrow the scope; omit them to let the skill identify candidates.
 
 ## Compatibility
 
-Both skills use the same portable `skills/<name>/SKILL.md` files. No agent-specific copies, MCP server, or runtime dependencies are required by the skills themselves. The installer needs Node.js; audits need access to your source, and `array apply` needs your project's tests and profiling tools.
+All skills use the same portable `skills/<name>/SKILL.md` files. No agent-specific copies, MCP server, or runtime dependencies are required by the skills themselves. The installer needs Node.js; audits need access to your source, and `apply` modes need your project's tests and profiling tools.
 
 The Claude Code plugin manifest is only an alternative installer for Claude Code. Other agents use the skill files directly through the skills CLI. Agent permissions still apply; available tools and models affect the depth of a review.
 
@@ -82,7 +86,7 @@ Run inside Claude Code:
 /plugin install hogworks@hogworks
 ```
 
-This installation uses `/hogworks:forage` and `/hogworks:array` instead of the unprefixed names above.
+This installation uses `/hogworks:forage`, `/hogworks:array`, and `/hogworks:nibble` instead of the unprefixed names above.
 
 ## Maintain your install
 

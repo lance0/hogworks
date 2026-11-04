@@ -1,7 +1,7 @@
 {
   "name": "hogworks",
   "version": "0.1.0",
-  "description": "forage finds implicit state machines, stale copies and sequential-await stalls; array runs a data-oriented design pass over hot code.",
+  "description": "forage finds implicit state machines, stale copies and sequential-await stalls; array runs a data-oriented design pass over hot code; nibble removes over-fetching and repeated work on hot paths.",
   "author": {
     "name": "Lance Tuller",
     "url": "https://github.com/lance0"
@@ -9,5 +9,5 @@
   "homepage": "https://github.com/lance0/hogworks",
   "repository": "https://github.com/lance0/hogworks",
   "license": "MIT",
-  "keywords": ["skills", "code-review", "audit", "concurrency", "data-oriented-design", "performance"]
+  "keywords": ["skills", "code-review", "audit", "concurrency", "data-oriented-design", "performance", "database"]
 }

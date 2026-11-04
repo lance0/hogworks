@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "hogworks",
-  "description": "Hedgehog-themed agent skills for finding the bugs and slow data layouts that green tests miss.",
+  "description": "Hedgehog-themed agent skills for finding the bugs, slow data layouts and wasted work that green tests miss.",
   "owner": {
     "name": "Lance Tuller",
     "url": "https://github.com/lance0"
@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "hogworks",
-      "description": "forage (lifecycle and concurrency audit) and array (data-oriented design review).",
+      "description": "forage (lifecycle and concurrency audit), array (data-oriented design review), and nibble (over-fetching and repeated-work audit).",
       "source": "./",
       "category": "development"
     }
