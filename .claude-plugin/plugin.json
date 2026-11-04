@@ -1,7 +1,7 @@
 {
   "name": "hogworks",
   "version": "0.1.0",
-  "description": "forage finds implicit state machines, stale copies and sequential-await stalls; array runs a data-oriented design pass over hot code.",
+  "description": "Hedgehog-themed agent skills that find lifecycle and concurrency bugs, slow data layouts, and wasted work on hot paths.",
   "author": {
     "name": "Lance Tuller",
     "url": "https://github.com/lance0"
@@ -9,5 +9,5 @@
   "homepage": "https://github.com/lance0/hogworks",
   "repository": "https://github.com/lance0/hogworks",
   "license": "MIT",
-  "keywords": ["skills", "code-review", "audit", "concurrency", "data-oriented-design", "performance"]
+  "keywords": ["skills", "code-review", "audit", "concurrency", "data-oriented-design", "performance", "database"]
 }
